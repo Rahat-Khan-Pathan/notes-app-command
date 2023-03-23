@@ -1,4 +1,5 @@
 const fs = require("fs");
+// function to get all notes in the data.json file
 const getNotes = function () {
     try {
         dataBuffer = fs.readFileSync("./data.json");
@@ -9,6 +10,7 @@ const getNotes = function () {
         return [];
     }
 };
+// function to add a new note
 const addNote = function (title, body) {
     data = getNotes();
     const duplicate = data.filter(function (note) {
@@ -18,10 +20,15 @@ const addNote = function (title, body) {
         console.log("Duplicate title");
         return;
     }
-    data.push({ title: title, body: body });
+    data.push({
+        title: title,
+        body: body,
+        createdDate: new Date().toLocaleString(),
+    });
     updateData(data);
     console.log("Note added");
 };
+// function to update a note, title is required
 const updateNote = function (title, body) {
     data = getNotes();
     const found = data.filter(function (note) {
@@ -30,11 +37,16 @@ const updateNote = function (title, body) {
     if (found.length === 0) {
         console.log("Note not found");
     } else {
-        data[data.indexOf(found[0])] = { title: title, body: body };
+        data[data.indexOf(found[0])] = {
+            title: title,
+            body: body,
+            updatedDate: new Date().toLocaleString(),
+        };
         updateData(data);
         console.log("Note updated");
     }
 };
+// function to remove a note, title is required
 const removeNote = function (title) {
     data = getNotes();
     const found = data.filter(function (note) {
@@ -48,13 +60,19 @@ const removeNote = function (title) {
         console.log("Note removed");
     }
 };
+// function to view all note title, body and date
 const viewNotes = function () {
     data = getNotes();
     let i = 1;
     data.forEach((e) => {
-        console.log(`Note - ${i++}\nTitle-${e.title}\nBody-${e.body}\n`);
+        console.log(
+            `Note - ${i++}\nTitle-${e.title}\nBody-${e.body}\nDate-${
+                e?.createdDate || e?.updatedDate
+            }\n`
+        );
     });
 };
+// function to update data in the data.json
 const updateData = function (data) {
     fs.writeFileSync("./data.json", JSON.stringify(data));
 };

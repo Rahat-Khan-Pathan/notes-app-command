@@ -13,7 +13,7 @@ $ node app.js add --title="Your title" --body="Your body"
 
 3. Run the following command to remove a note.
 ```
-$ node app.js remove --title="Your title"
+$ node app.js remove --title="Note title"
 ```
 
 4. Run the following command to update a note.

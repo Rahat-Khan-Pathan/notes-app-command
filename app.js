@@ -1,5 +1,6 @@
 const yargs = require("yargs");
 const notes = require("./note.js");
+// ADD command
 yargs.command({
     command: "add",
     description: "Add a note",
@@ -19,6 +20,7 @@ yargs.command({
         notes.addNote(argv.title, argv.body);
     },
 });
+// REMOVE command
 yargs.command({
     command: "remove",
     description: "Remove a note",
@@ -33,7 +35,7 @@ yargs.command({
         notes.removeNote(argv.title);
     },
 });
-
+// UPDATE command
 yargs.command({
     command: "update",
     description: "Update a note",
@@ -53,7 +55,7 @@ yargs.command({
         notes.updateNote(argv.title, argv.body);
     },
 });
-
+// VIEW command
 yargs.command({
     command: "view",
     description: "View all notes",
