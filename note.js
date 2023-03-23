@@ -22,6 +22,19 @@ const addNote = function (title, body) {
     updateData(data);
     console.log("Note added");
 };
+const updateNote = function (title, body) {
+    data = getNotes();
+    const found = data.filter(function (note) {
+        return note.title === title;
+    });
+    if (found.length === 0) {
+        console.log("Note not found");
+    } else {
+        data[data.indexOf(found[0])] = { title: title, body: body };
+        updateData(data);
+        console.log("Note updated");
+    }
+};
 const removeNote = function (title) {
     data = getNotes();
     const found = data.filter(function (note) {
@@ -30,7 +43,7 @@ const removeNote = function (title) {
     if (found.length === 0) {
         console.log("Note not found");
     } else {
-        data.splice(data.indexOf(found), 1);
+        data.splice(data.indexOf(found[0]), 1);
         updateData(data);
         console.log("Note removed");
     }
@@ -49,4 +62,5 @@ module.exports = {
     addNote: addNote,
     removeNote: removeNote,
     viewNotes: viewNotes,
+    updateNote: updateNote,
 };

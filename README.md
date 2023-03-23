@@ -16,12 +16,17 @@ $ node app.js add --title="Your title" --body="Your body"
 $ node app.js remove --title="Your title"
 ```
 
-4. Run the following command to view all notes.
+4. Run the following command to update a note.
+```
+$ node app.js update --title="Note title" --body="Your new body"
+```
+
+5. Run the following command to view all notes.
 ```
 $ node app.js view
 ```
 
-5. Run the following command to view all commands.
+6. Run to view all commands.
 ```
 $ node app.js --help
 ```
